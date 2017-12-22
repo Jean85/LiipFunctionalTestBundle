@@ -266,7 +266,7 @@ abstract class WebTestCase extends BaseWebTestCase
             $_SERVER['KERNEL_DIR'] = getcwd().$this->kernelDir;
         }
 
-        $cacheKey = $this->kernelDir.'|'.$this->environment;
+        $cacheKey = implode('|', [$this->kernelDir, $this->environment, static::getKernelClass()]);
         if (empty($this->containers[$cacheKey])) {
             $options = array(
                 'environment' => $this->environment,
